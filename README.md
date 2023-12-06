@@ -2,7 +2,6 @@
 
 <img src="assets/logo_DebtGuardianAI.png" alt="debtguardian.ai Logo" width="200"/>
 
-**debtguardian.ai**: An AI-powered scanner for detecting and resolving technical &amp; security debt in your GitHub repos. Ensure clean, secure code with ease.
 
 **DebtGuardian.AI** is an AI-powered scanner designed to detect and resolve technical and security debt in GitHub repositories. It ensures your code is clean and secure, simplifying code maintenance.
 
@@ -37,7 +36,7 @@ Command to find technical and security debts
 
 >python3 main.py GitHub-Repo-Address
 
-GitHub Repo example is https://github.com/Tripletex/tripletex-api2.git 
+An example of a GitHub Repo  is https://github.com/Tripletex/tripletex-api2.git 
 
 Command to resume detection of technical and security debts if stopped midway
 
