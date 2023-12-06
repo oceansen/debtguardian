@@ -1,0 +1,206 @@
+{
+    "bbcd50c734902901cc54c61e5e03038ebe6ffebf": {
+        "snippet_functionality": "This code snippet is used to authenticate a user with the Tripletex API using consumer and employee tokens. It creates a session token that is valid for one hour from the current time.",
+        "number_of_lines": 26,
+        "securityDebts": [
+            {
+                "type": "Hardcoded Secrets",
+                "symptom": "The code snippet uses hardcoded values for authentication.",
+                "affected_area": "Lines 20-21",
+                "suggested_repair": "Use environment variables or a secure configuration file to store sensitive information such as tokens."
+            },
+            {
+                "type": "Improper Session Management",
+                "symptom": "The session token is set to expire after one hour without any mechanism for renewal or invalidation.",
+                "affected_area": "Line 18",
+                "suggested_repair": "Implement a mechanism to renew or invalidate the session token as needed."
+            }
+        ],
+        "technicalDebts": [
+            {
+                "type": "Error/Exception Handling",
+                "symptom": "The code does not handle potential exceptions that may be thrown by the Tripletex API.",
+                "affected_area": "Lines 15-23",
+                "suggested_repair": "Wrap the API calls in a try-catch block and handle potential exceptions appropriately."
+            },
+            {
+                "type": "Hard-coded Values",
+                "symptom": "The username is hardcoded to '0'.",
+                "affected_area": "Line 22",
+                "suggested_repair": "Avoid hardcoding values. Use a variable or constant instead."
+            }
+        ],
+        "location": "example/java-gradle/order/src/main/java/no/tripletex/example/order/Example.java",
+        "repository": "https://github.com/Tripletex/tripletex-api2.git"
+    },
+    "8bebaa8c894752e59341baae9f8fb8c39001b19d": {
+        "snippet_functionality": "The code snippet is a Java application that interacts with the Tripletex API to create and manage orders, products, customers, and invoices. It authenticates with the API, creates a session token, and then uses that token to perform various operations such as creating a product, searching for a customer, creating an order, and generating an invoice.",
+        "number_of_lines": 137,
+        "securityDebts": [
+            {
+                "type": "Hardcoded Secrets",
+                "symptom": "The code uses hardcoded credentials for authentication.",
+                "affected_area": "Lines: 53-54",
+                "suggested_repair": "Use environment variables or a secure configuration file to store sensitive information such as credentials."
+            },
+            {
+                "type": "Insufficient Error Handling",
+                "symptom": "The code catches an ApiException but only logs the error and does not handle it.",
+                "affected_area": "Lines: 30-33",
+                "suggested_repair": "Implement proper error handling to ensure the application can recover from or appropriately respond to errors."
+            }
+        ],
+        "technicalDebts": [
+            {
+                "type": "Long Methods",
+                "symptom": "The 'run' method is too long and does too many things.",
+                "affected_area": "Lines: 35-136",
+                "suggested_repair": "Refactor the 'run' method by breaking it down into smaller, more manageable methods each with a single responsibility."
+            },
+            {
+                "type": "Poorly Named Classes/Methods",
+                "symptom": "The 'ApiLambda' interface and 'getException' method have unclear names that do not clearly indicate their purpose.",
+                "affected_area": "Lines: 15-25",
+                "suggested_repair": "Rename the 'ApiLambda' interface and 'getException' method to names that more accurately reflect their purpose."
+            }
+        ],
+        "location": "example/java-gradle/order/src/main/java/no/tripletex/example/order/Example.java",
+        "repository": "https://github.com/Tripletex/tripletex-api2.git"
+    },
+    "6f1e050b371d79eb5cfd6538dbeee2558051899e": {
+        "snippet_functionality": "This code snippet is an example of an authentication process for the Tripletex API. It generates a new session token based on the consumerToken and employeeToken, sets up basic authentication and performs a basic 'whoAmI' call to the API with the authorization header.",
+        "number_of_lines": 39,
+        "securityDebts": [
+            {
+                "type": "Hardcoded Secrets",
+                "symptom": "The consumerToken and employeeToken are hardcoded in the code.",
+                "affected_area": "Lines 7-10",
+                "suggested_repair": "Move sensitive data like tokens to environment variables or secure vaults."
+            },
+            {
+                "type": "Inadequate Encryption",
+                "symptom": "The basic authentication value is base64-encoded, which is not a secure form of encryption.",
+                "affected_area": "Lines 33-35",
+                "suggested_repair": "Use a more secure form of encryption for the authentication value."
+            }
+        ],
+        "technicalDebts": [
+            {
+                "type": "Hard-coded Values",
+                "symptom": "The session token expiration date is hardcoded.",
+                "affected_area": "Line 13",
+                "suggested_repair": "Make the session token expiration date configurable."
+            },
+            {
+                "type": "Error/Exception Handling",
+                "symptom": "The error handling is not comprehensive. It only checks if the session token contains a '-' character.",
+                "affected_area": "Lines 26-31",
+                "suggested_repair": "Improve error handling by checking for more possible error conditions."
+            }
+        ],
+        "location": "examples/bash/authentication/example.sh",
+        "repository": "https://github.com/Tripletex/tripletex-api2.git"
+    },
+    "2bf78eb782374479d6c591186619f72a6d171689": {
+        "snippet_functionality": "This code snippet is used to interact with the Tripletex API using a checksum feature. It sends a request to the API with a dummy checksum to get the initial data set and its checksum. Then, it sends another request with the received checksum to check if the data set has changed.",
+        "number_of_lines": 33,
+        "securityDebts": [
+            {
+                "type": "Hardcoded Secrets",
+                "symptom": "The session token is hardcoded into the script.",
+                "affected_area": "Lines 13-14",
+                "suggested_repair": "Use environment variables to store sensitive information such as session tokens."
+            },
+            {
+                "type": "Improper Session Management",
+                "symptom": "The session token is being used without any validation or expiry.",
+                "affected_area": "Lines 13-14, 18-19, 29-30",
+                "suggested_repair": "Implement proper session management with validation and expiry."
+            }
+        ],
+        "technicalDebts": [
+            {
+                "type": "Hard-coded Values",
+                "symptom": "The session token and proxy employee ID are hardcoded.",
+                "affected_area": "Lines 13-14",
+                "suggested_repair": "Use configuration files or environment variables to store these values."
+            },
+            {
+                "type": "Insufficient Testing",
+                "symptom": "There are no test cases or error handling in the script.",
+                "affected_area": "Whole script",
+                "suggested_repair": "Add test cases and error handling to ensure the script works as expected."
+            }
+        ],
+        "location": "examples/bash/checksum/example.sh",
+        "repository": "https://github.com/Tripletex/tripletex-api2.git"
+    },
+    "e087ccb1eebd37f4976d3cc4682d452caf239a56": {
+        "snippet_functionality": "This code snippet is an example authentication process for the Tripletex API. It generates a new session token based on consumerToken and employeeToken, checks the validity of the session token, and performs a basic 'whoAmI' call to the API with the authorization header.",
+        "number_of_lines": 37,
+        "securityDebts": [
+            {
+                "type": "Hardcoded Secrets",
+                "symptom": "The consumerToken and employeeToken are hardcoded in the script.",
+                "affected_area": "Lines 7-10",
+                "suggested_repair": "Store secrets in a secure and encrypted manner, such as using environment variables or a secure vault, and retrieve them programmatically."
+            },
+            {
+                "type": "Inadequate Encryption",
+                "symptom": "The basic authentication value is base64-encoded, which is not a secure form of encryption.",
+                "affected_area": "Lines 34-36",
+                "suggested_repair": "Use a more secure form of encryption for the authentication value, such as bcrypt or scrypt."
+            }
+        ],
+        "technicalDebts": [
+            {
+                "type": "Hard-coded Values",
+                "symptom": "The sessionExpirationDate and proxyCompanyId are hardcoded in the script.",
+                "affected_area": "Lines 11-13",
+                "suggested_repair": "Make these values configurable through environment variables or command-line arguments."
+            },
+            {
+                "type": "Error/Exception Handling",
+                "symptom": "The script does not handle potential errors from the curl commands.",
+                "affected_area": "Lines 21-23, 38-40",
+                "suggested_repair": "Add error handling for the curl commands to handle potential failures and provide more informative error messages."
+            }
+        ],
+        "location": "examples/bash/authentication/example.sh",
+        "repository": "https://github.com/Tripletex/tripletex-api2.git"
+    },
+    "d423c92f88ffbb6b1a46680660eedc7148480058": {
+        "snippet_functionality": "This code snippet is used to authenticate a user to the Tripletex API. It generates a new session token based on the consumerToken and employeeToken, sets up basic authentication, and performs a basic 'whoAmI' call to the API.",
+        "number_of_lines": 47,
+        "securityDebts": [
+            {
+                "type": "Hardcoded Secrets",
+                "symptom": "The consumerToken and employeeToken are hardcoded in the script.",
+                "affected_area": "Lines 8-9",
+                "suggested_repair": "Store secrets in a secure and encrypted manner, such as environment variables or a secure vault, and retrieve them programmatically."
+            },
+            {
+                "type": "Improper Session Management",
+                "symptom": "The session token expiration date is hardcoded and set to a past date.",
+                "affected_area": "Line 20",
+                "suggested_repair": "Dynamically set the session token expiration date to a reasonable future time."
+            }
+        ],
+        "technicalDebts": [
+            {
+                "type": "Hard-coded Values",
+                "symptom": "The API host and session token expiration date are hardcoded.",
+                "affected_area": "Lines 14, 20",
+                "suggested_repair": "Use configuration files or environment variables to store these values."
+            },
+            {
+                "type": "Error/Exception Handling",
+                "symptom": "The script does not handle potential errors from the curl command used to generate the session token.",
+                "affected_area": "Lines 33-37",
+                "suggested_repair": "Add error handling to the curl command to handle potential failures and provide appropriate feedback."
+            }
+        ],
+        "location": "examples/bash/authentication/example.sh",
+        "repository": "https://github.com/Tripletex/tripletex-api2.git"
+    }
+}
