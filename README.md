@@ -1,6 +1,8 @@
 # DebtGuardian.AI
 
-![DebtGuardian.AI Logo](assets/logo_DebtGuardianAI.png)
+<img src="assets/logo_DebtGuardianAI.png" alt="debtguardian.ai Logo" width="200"/>
+
+**debtguardian.ai**: An AI-powered scanner for detecting and resolving technical &amp; security debt in your GitHub repos. Ensure clean, secure code with ease.
 
 **DebtGuardian.AI** is an AI-powered scanner designed to detect and resolve technical and security debt in GitHub repositories. It ensures your code is clean and secure, simplifying code maintenance.
 
@@ -33,13 +35,13 @@ Update OpenAI engine information in main.py. It's currently set to our OpenAI ru
 
 Command to find technical and security debts
 
->python3 main.py <GitHub Repo> 
+>python3 main.py GitHub-Repo-Address
 
 GitHub Repo example is https://github.com/Tripletex/tripletex-api2.git 
 
 Command to resume detection of technical and security debts if stopped midway
 
->python3 main.py <GitHub Repo>  --resume 
+>python3 main.py GitHub-Repo-Address  --resume 
 
 **Output**
 
@@ -47,37 +49,38 @@ The program generates <GitHub Repo>_debts.json
 
 Here is an example snippet for debts found in a GitHub Repo:
 
+```json
 "bbcd50c734902901cc54c61e5e03038ebe6ffebf": {
-        "snippet_functionality": "This code snippet is used to authenticate a user with the Tripletex API using consumer and employee tokens. It creates a session token that is valid for one hour from the current time.",
-        "number_of_lines": 26,
-        "securityDebts": [
-            {
-                "type": "Hardcoded Secrets",
-                "symptom": "The code snippet uses hardcoded values for authentication.",
-                "affected_area": "Lines 20-21",
-                "suggested_repair": "Use environment variables or a secure configuration file to store sensitive information such as tokens."
-            },
-            {
-                "type": "Improper Session Management",
-                "symptom": "The session token is set to expire after one hour without any mechanism for renewal or invalidation.",
-                "affected_area": "Line 18",
-                "suggested_repair": "Implement a mechanism to renew or invalidate the session token as needed."
-            }
-        ],
-        "technicalDebts": [
-            {
-                "type": "Error/Exception Handling",
-                "symptom": "The code does not handle potential exceptions that may be thrown by the Tripletex API.",
-                "affected_area": "Lines 15-23",
-                "suggested_repair": "Wrap the API calls in a try-catch block and handle potential exceptions appropriately."
-            },
-            {
-                "type": "Hard-coded Values",
-                "symptom": "The username is hardcoded to '0'.",
-                "affected_area": "Line 22",
-                "suggested_repair": "Avoid hardcoding values. Use a variable or constant instead."
-            }
-        ],
-        "location": "example/java-gradle/order/src/main/java/no/tripletex/example/order/Example.java",
-        "repository": "https://github.com/Tripletex/tripletex-api2.git"
-    },
+    "snippet_functionality": "This code snippet is used to authenticate a user with the Tripletex API using consumer and employee tokens. It creates a session token that is valid for one hour from the current time.",
+    "number_of_lines": 26,
+    "securityDebts": [
+        {
+            "type": "Hardcoded Secrets",
+            "symptom": "The code snippet uses hardcoded values for authentication.",
+            "affected_area": "Lines 20-21",
+            "suggested_repair": "Use environment variables or a secure configuration file to store sensitive information such as tokens."
+        },
+        {
+            "type": "Improper Session Management",
+            "symptom": "The session token is set to expire after one hour without any mechanism for renewal or invalidation.",
+            "affected_area": "Line 18",
+            "suggested_repair": "Implement a mechanism to renew or invalidate the session token as needed."
+        }
+    ],
+    "technicalDebts": [
+        {
+            "type": "Error/Exception Handling",
+            "symptom": "The code does not handle potential exceptions that may be thrown by the Tripletex API.",
+            "affected_area": "Lines 15-23",
+            "suggested_repair": "Wrap the API calls in a try-catch block and handle potential exceptions appropriately."
+        },
+        {
+            "type": "Hard-coded Values",
+            "symptom": "The username is hardcoded to '0'.",
+            "affected_area": "Line 22",
+            "suggested_repair": "Avoid hardcoding values. Use a variable or constant instead."
+        }
+    ],
+    "location": "example/java-gradle/order/src/main/java/no/tripletex/example/order/Example.java",
+    "repository": "https://github.com/Tripletex/tripletex-api2.git"
+}
