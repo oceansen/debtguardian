@@ -1,32 +1,34 @@
-# debtguardian.ai
-<img src="assets/logo_DebtGuardianAI.png" alt="debtguardian.ai Logo" width="200"/>
+# DebtGuardian.AI
 
-**debtguardian.ai**: An AI-powered scanner for detecting and resolving technical &amp; security debt in your GitHub repos. Ensure clean, secure code with ease.
+![DebtGuardian.AI Logo](assets/logo_DebtGuardianAI.png)
 
+**DebtGuardian.AI** is an AI-powered scanner designed to detect and resolve technical and security debt in GitHub repositories. It ensures your code is clean and secure, simplifying code maintenance.
 
-**Pre-requisites**
-!pip install pydriller
-!pip install requests
-!pip install openai==0.28.1
-!pip install pygments
-!pip install pydantic==1.10.9
-!apt-get install -y graphviz openjdk-11-jre-headless
-!pip install guardrails-ai  typing  rich
-!pip install tiktoken
+## Pre-requisites
+- `!pip install pydriller`
+- `!pip install requests`
+- `!pip install openai==0.28.1`
+- `!pip install pygments`
+- `!pip install pydantic==1.10.9`
+- `!apt-get install -y graphviz openjdk-11-jre-headless`
+- `!pip install guardrails-ai typing rich`
+- `!pip install tiktoken`
+
 
 **Usage**
 
 
 Set OpenAI environment variable
 
->export OPENAI_API_KEY='your_api_key_here'
+export OPENAI_API_KEY='your_api_key_here'
+
 
 Update OpenAI engine information in main.py. It's currently set to our OpenAI running on our Azure deployment
 
-engineName="jaipetefort"
-openai.api_type = "azure"
-openai.api_base = "https://03.openai.azure.com/"
-openai.api_version = "2023-07-01-preview"
+- engineName="jaipetefort"
+- openai.api_type = "azure"
+- openai.api_base = "https://03.openai.azure.com/"
+- openai.api_version = "2023-07-01-preview"
 
 
 Command to find technical and security debts
